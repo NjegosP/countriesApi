@@ -1,0 +1,7 @@
+.countryCard {
+  border: 1px solid pink;
+  width: 500px;
+  height: 300px;
+  border-radius: 5px;
+  background-color: hsl(209, 23%, 22%);
+}
