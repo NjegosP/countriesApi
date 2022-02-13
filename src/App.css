@@ -2,7 +2,6 @@
 }
 .headerContainer {
   background-color: hsl(209, 23%, 22%);
-  width: 100vw;
   height: 50px;
   display: flex;
 }

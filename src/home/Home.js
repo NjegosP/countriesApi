@@ -10,16 +10,23 @@ function Home() {
       .then((data) => setCountries(data));
   }, []);
 
-  const CountryCard = ({name, population, region, capital}) => {
-    console.log(name, population);
+  const CountryCard = ({name, population, region, capital, img}) => {
     return (
       <div className="countryCard">
-        <div></div>
-        <div>
-          <h2>{name}</h2>
-          <h1>Population: {population}</h1>
-          <h1>Region: {region}</h1>
-          <h1>Capital: {capital}</h1>
+        <div className="flag" style={{backgroundImage: `url(${img})`}}></div>
+        <div className="infoContainer">
+          <div className="info">
+            <div className="title">{name}</div>
+            <div className="subtitle">
+              <span className="subtitle-lbl">Population:</span> {population}
+            </div>
+            <div className="subtitle">
+              <span className="subtitle-lbl">Region:</span> {region}
+            </div>
+            <div className="subtitle">
+              <span className="subtitle-lbl">Capital:</span> {capital}
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -27,20 +34,28 @@ function Home() {
 
   const Cards = ({data}) => {
     console.log("this is data", data);
-    return data.map((data) => (
-      <CountryCard
-        name={data.name}
-        population={data.population}
-        region={data.region}
-        capital={data.capital }
-      />
-    ));
+    return data.map(
+      ({name, population, region, capital, flags, numericCode}) => (
+        <CountryCard
+          key={numericCode}
+          name={name}
+          population={population}
+          region={region}
+          capital={capital}
+          img={flags.png}
+        />
+      )
+    );
   };
 
   return (
     <div>
       <Header />
-      <Cards data={countries} />
+      <div className="mainContainer">
+        <div className="flagSection">
+          <Cards data={countries} />
+        </div>
+      </div>
     </div>
   );
 }
